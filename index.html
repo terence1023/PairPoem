@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗词Wordle - 飞花令猜诗游戏</title>
+    <style>
+        body {
+            font-family: "楷体", "STKaiti", serif;
+            background-color: #f5f5f0;
+            background-image: url('https://img.zcool.cn/community/014c21594fd8aca8012193a37c6e4f.jpg');
+            background-size: cover;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #d4a76a;
+        }
+        
+        h1 {
+            color: #8b4513;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .game-board {
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .guess-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .guess-cell {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #d4a76a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        
+        .guess-cell.correct {
+            background-color: #6aaa64;
+            color: white;
+            border-color: #6aaa64;
+        }
+        
+        .guess-cell.present {
+            background-color: #c9b458;
+            color: white;
+            border-color: #c9b458;
+        }
+        
+        .guess-cell.absent {
+            background-color: #787c7e;
+            color: white;
+            border-color: #787c7e;
+        }
+        
+        .input-area {
+            margin: 20px 0;
+        }
+        
+        #poem-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.2em;
+            font-family: "楷体", "STKaiti", serif;
+            border: 2px solid #d4a76a;
+            border-radius: 5px;
+        }
+        
+        button {
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: "楷体", "STKaiti", serif;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #a0522d;
+        }
+        
+        .stats {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .instructions {
+            text-align: left;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f4e6;
+            border-left: 4px solid #d4a76a;
+        }
+        
+        .hint {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>诗词Wordle</h1>
+        <div class="subtitle">飞花令猜诗游戏</div>
+        
+        <div class="instructions">
+            <h3>游戏规则：</h3>
+            <p>1. 系统随机选择一句古诗作为答案（隐藏不显示）</p>
+            <p>2. 输入与答案等长的诗句进行猜测</p>
+            <p>3. 颜色反馈：</p>
+            <ul>
+                <li><span style="color: #6aaa64;">绿色</span>：字正确且位置正确</li>
+                <li><span style="color: #c9b458;">黄色</span>：字正确但位置错误</li>
+                <li><span style="color: #787c7e;">灰色</span>：字不存在于答案中</li>
+            </ul>
+            <p>4. 根据反馈调整猜测，直到完全猜中答案</p>
+        </div>
+        
+        <div class="game-board" id="game-board">
+            <!-- 游戏棋盘将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="poem-input" placeholder="请输入一句古诗..." autocomplete="off">
+            <button id="submit-guess">提交</button>
+        </div>
+        
+        <div class="stats">
+            <p>尝试次数: <span id="attempts">0</span></p>
+        </div>
+        
+        <div class="hint" id="hint">
+            <!-- 提示信息将在这里显示 -->
+        </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
